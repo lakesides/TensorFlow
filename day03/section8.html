@@ -1,0 +1,1619 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>案例：VGG迁移学习 | 深度学习课程</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../day03/section9.html" />
+    
+    
+    <link rel="prev" href="../day03/section7.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4.8"
+        data-chapter-title="案例：VGG迁移学习"
+        data-filepath="day03/section8.md"
+        data-basepath=".."
+        data-revision="Mon Feb 25 2019 13:33:47 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="DeepLearning/index.html">
+            
+                
+                    <a href="../DeepLearning/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        深度学习介绍
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="DeepLearning/section1.html">
+            
+                
+                    <a href="../DeepLearning/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        深度学习与机器学习的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="DeepLearning/section2.html">
+            
+                
+                    <a href="../DeepLearning/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        深度学习的应用场景
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="DeepLearning/section3.html">
+            
+                
+                    <a href="../DeepLearning/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        深度学习框架介绍
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="day01/index.html">
+            
+                
+                    <a href="../day01/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        TensorFlow介绍
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="day01/section1.html">
+            
+                
+                    <a href="../day01/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        TF数据流图
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="day01/section2.html">
+            
+                
+                    <a href="../day01/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        图与TensorBoard
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="day01/section3.html">
+            
+                
+                    <a href="../day01/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        会话
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="day01/section4.html">
+            
+                
+                    <a href="../day01/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        张量
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="day01/section5.html">
+            
+                
+                    <a href="../day01/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        变量OP
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="day01/section6.html">
+            
+                
+                    <a href="../day01/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        案例：TensorFlow实现线性回归
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="day01/section7.html">
+            
+                
+                    <a href="../day01/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        逻辑回归原理与实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="day01/section8.html">
+            
+                
+                    <a href="../day01/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.8.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="day01/section9.html">
+            
+                
+                    <a href="../day01/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="day02/index.html">
+            
+                
+                    <a href="../day02/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        神经网络与tf.keras
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="day02/section1.html">
+            
+                
+                    <a href="../day02/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        图片基础与tf.keras介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="day02/section2.html">
+            
+                
+                    <a href="../day02/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        神经网络基础
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="day02/section3.html">
+            
+                
+                    <a href="../day02/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        神经网络原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="day02/section4.html">
+            
+                
+                    <a href="../day02/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        案例：tf.keras进行时装分类
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="day02/section5.html">
+            
+                
+                    <a href="../day02/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        深层神经网络与优化算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="day02/section6.html">
+            
+                
+                    <a href="../day02/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="day02/section7.html">
+            
+                
+                    <a href="../day02/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="day03/index.html">
+            
+                
+                    <a href="../day03/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        卷积神经网络
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="day03/section1.html">
+            
+                
+                    <a href="../day03/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        卷积神经网络简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="day03/section2.html">
+            
+                
+                    <a href="../day03/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        卷积神经网络原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="day03/section3.html">
+            
+                
+                    <a href="../day03/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        案例：CIFAR100类别分类
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="day03/section4.html">
+            
+                
+                    <a href="../day03/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        正则化
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="day03/section5.html">
+            
+                
+                    <a href="../day03/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        神经网络调优与BN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="day03/section6.html">
+            
+                
+                    <a href="../day03/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        经典分类网络结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="day03/section7.html">
+            
+                
+                    <a href="../day03/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        CNN网络实战技巧与迁移学习
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.8" data-path="day03/section8.html">
+            
+                
+                    <a href="../day03/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        案例：VGG迁移学习
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="day03/section9.html">
+            
+                
+                    <a href="../day03/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="day03/section10.html">
+            
+                
+                    <a href="../day03/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.10.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="day04/index.html">
+            
+                
+                    <a href="../day04/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        商品物体检测项目介绍
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="day04/section1.html">
+            
+                
+                    <a href="../day04/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        项目演示介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="day04/section2.html">
+            
+                
+                    <a href="../day04/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        目标检测概述
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="day04/section3.html">
+            
+                
+                    <a href="../day04/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        R-CNN与SPPNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="day04/section4.html">
+            
+                
+                    <a href="../day04/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Fast R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="day04/section5.html">
+            
+                
+                    <a href="../day04/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Faster R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="day04/section6.html">
+            
+                
+                    <a href="../day04/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="day04/section7.html">
+            
+                
+                    <a href="../day04/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="day05/index.html">
+            
+                
+                    <a href="../day05/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        YOLO与SSD
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="day05/section1.html">
+            
+                
+                    <a href="../day05/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        YOLO算法原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="day05/section2.html">
+            
+                
+                    <a href="../day05/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        SSD算法原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="day05/section3.html">
+            
+                
+                    <a href="../day05/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        SSD网络接口介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="day05/section4.html">
+            
+                
+                    <a href="../day05/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        案例：SSD物体检测
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="day05/section5.html">
+            
+                
+                    <a href="../day05/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="day05/section6.html">
+            
+                
+                    <a href="../day05/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="day06/index.html">
+            
+                
+                    <a href="../day06/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        商品检测数据集训练
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="day06/section1.html">
+            
+                
+                    <a href="../day06/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        目标检测数据集与标记
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="day06/section2.html">
+            
+                
+                    <a href="../day06/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        项目训练结构介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="day06/section3.html">
+            
+                
+                    <a href="../day06/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        标注数据读取与存储
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="day06/section4.html">
+            
+                
+                    <a href="../day06/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        商品检测模型训练
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="day06/section5.html">
+            
+                
+                    <a href="../day06/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Opencv-python介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="day06/section6.html">
+            
+                
+                    <a href="../day06/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        案例：视频物体检测测试
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="day06/section7.html">
+            
+                
+                    <a href="../day06/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.7.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8" data-path="day06/section8.html">
+            
+                
+                    <a href="../day06/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.8.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="day07/index.html">
+            
+                
+                    <a href="../day07/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        模型导出与部署
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="day07/section1.html">
+            
+                
+                    <a href="../day07/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Web与模型服务对接逻辑
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="day07/section2.html">
+            
+                
+                    <a href="../day07/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        模型导出
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="day07/section3.html">
+            
+                
+                    <a href="../day07/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Docker部署环境使用介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="day07/section4.html">
+            
+                
+                    <a href="../day07/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        TensorFlow Serving开启模型服务
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="day07/section5.html">
+            
+                
+                    <a href="../day07/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        TensorFlow Client对接模型服务
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.6" data-path="day07/section6.html">
+            
+                
+                    <a href="../day07/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.6.</b>
+                        
+                        Web Server开启
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.7" data-path="day07/section7.html">
+            
+                
+                    <a href="../day07/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.7.</b>
+                        
+                        项目接口与百度机器人对接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.8" data-path="day07/section8.html">
+            
+                
+                    <a href="../day07/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.8.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.9" data-path="day07/section9.html">
+            
+                
+                    <a href="../day07/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.9.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >深度学习课程</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="31-&#x8FC1;&#x79FB;&#x5B66;&#x4E60;&#x6848;&#x4F8B;">3.1 &#x8FC1;&#x79FB;&#x5B66;&#x4E60;&#x6848;&#x4F8B;</h1>
+<h3 id="&#x5B66;&#x4E60;&#x76EE;&#x6807;">&#x5B66;&#x4E60;&#x76EE;&#x6807;</h3>
+<ul>
+<li>&#x76EE;&#x6807;<ul>
+<li>&#x8BF4;&#x660E;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x7684;&#x4F5C;&#x7528;</li>
+</ul>
+</li>
+<li>&#x5E94;&#x7528;<ul>
+<li>&#x5E94;&#x7528;Keras&#x57FA;&#x4E8E;VGG&#x5BF9;&#x4E94;&#x79CD;&#x56FE;&#x7247;&#x7C7B;&#x522B;&#x8BC6;&#x522B;&#x7684;&#x8FC1;&#x79FB;&#x5B66;&#x4E60;</li>
+</ul>
+</li>
+</ul>
+<h2 id="311-&#x6848;&#x4F8B;&#xFF1A;&#x57FA;&#x4E8E;vgg&#x5BF9;&#x4E94;&#x79CD;&#x56FE;&#x7247;&#x7C7B;&#x522B;&#x8BC6;&#x522B;&#x7684;&#x8FC1;&#x79FB;&#x5B66;&#x4E60;">3.1.1 &#x6848;&#x4F8B;&#xFF1A;&#x57FA;&#x4E8E;VGG&#x5BF9;&#x4E94;&#x79CD;&#x56FE;&#x7247;&#x7C7B;&#x522B;&#x8BC6;&#x522B;&#x7684;&#x8FC1;&#x79FB;&#x5B66;&#x4E60;</h2>
+<h3 id="3111-&#x6848;&#x4F8B;&#x6548;&#x679C;">3.1.1.1 &#x6848;&#x4F8B;&#x6548;&#x679C;</h3>
+<p><img src="../images/modelckpt.png" alt=""></p>
+<pre><code class="lang-python">Epoch <span class="hljs-number">1</span>/<span class="hljs-number">2</span>
+ <span class="hljs-number">1</span>/<span class="hljs-number">13</span> [=&gt;............................] - ETA: <span class="hljs-number">3</span>:<span class="hljs-number">20</span> - loss: <span class="hljs-number">1.6811</span> - acc: <span class="hljs-number">0.1562</span>
+ <span class="hljs-number">2</span>/<span class="hljs-number">13</span> [===&gt;..........................] - ETA: <span class="hljs-number">3</span>:<span class="hljs-number">01</span> - loss: <span class="hljs-number">1.5769</span> - acc: <span class="hljs-number">0.2500</span>
+ <span class="hljs-number">3</span>/<span class="hljs-number">13</span> [=====&gt;........................] - ETA: <span class="hljs-number">2</span>:<span class="hljs-number">44</span> - loss: <span class="hljs-number">1.4728</span> - acc: <span class="hljs-number">0.3958</span>
+ <span class="hljs-number">4</span>/<span class="hljs-number">13</span> [========&gt;.....................] - ETA: <span class="hljs-number">2</span>:<span class="hljs-number">27</span> - loss: <span class="hljs-number">1.3843</span> - acc: <span class="hljs-number">0.4531</span>
+ <span class="hljs-number">5</span>/<span class="hljs-number">13</span> [==========&gt;...................] - ETA: <span class="hljs-number">2</span>:<span class="hljs-number">14</span> - loss: <span class="hljs-number">1.3045</span> - acc: <span class="hljs-number">0.4938</span>
+ <span class="hljs-number">6</span>/<span class="hljs-number">13</span> [============&gt;.................] - ETA: <span class="hljs-number">1</span>:<span class="hljs-number">58</span> - loss: <span class="hljs-number">1.2557</span> - acc: <span class="hljs-number">0.5156</span>
+ <span class="hljs-number">7</span>/<span class="hljs-number">13</span> [===============&gt;..............] - ETA: <span class="hljs-number">1</span>:<span class="hljs-number">33</span> - loss: <span class="hljs-number">1.1790</span> - acc: <span class="hljs-number">0.5759</span>
+ <span class="hljs-number">8</span>/<span class="hljs-number">13</span> [=================&gt;............] - ETA: <span class="hljs-number">1</span>:<span class="hljs-number">18</span> - loss: <span class="hljs-number">1.1153</span> - acc: <span class="hljs-number">0.6211</span>
+ <span class="hljs-number">9</span>/<span class="hljs-number">13</span> [===================&gt;..........] - ETA: <span class="hljs-number">1</span>:<span class="hljs-number">02</span> - loss: <span class="hljs-number">1.0567</span> - acc: <span class="hljs-number">0.6562</span>
+<span class="hljs-number">10</span>/<span class="hljs-number">13</span> [======================&gt;.......] - ETA: <span class="hljs-number">46</span>s - loss: <span class="hljs-number">1.0043</span> - acc: <span class="hljs-number">0.6875</span> 
+<span class="hljs-number">11</span>/<span class="hljs-number">13</span> [========================&gt;.....] - ETA: <span class="hljs-number">31</span>s - loss: <span class="hljs-number">0.9580</span> - acc: <span class="hljs-number">0.7159</span>
+<span class="hljs-number">12</span>/<span class="hljs-number">13</span> [==========================&gt;...] - ETA: <span class="hljs-number">15</span>s - loss: <span class="hljs-number">0.9146</span> - acc: <span class="hljs-number">0.7344</span>
+<span class="hljs-number">13</span>/<span class="hljs-number">13</span> [==============================] - <span class="hljs-number">249</span>s <span class="hljs-number">19</span>s/step - loss: <span class="hljs-number">0.8743</span> - acc: <span class="hljs-number">0.7519</span> - val_loss: <span class="hljs-number">0.3906</span> - val_acc: <span class="hljs-number">0.9000</span>
+Epoch <span class="hljs-number">2</span>/<span class="hljs-number">2</span>
+ <span class="hljs-number">1</span>/<span class="hljs-number">13</span> [=&gt;............................] - ETA: <span class="hljs-number">2</span>:<span class="hljs-number">56</span> - loss: <span class="hljs-number">0.3862</span> - acc: <span class="hljs-number">1.0000</span>
+ <span class="hljs-number">2</span>/<span class="hljs-number">13</span> [===&gt;..........................] - ETA: <span class="hljs-number">2</span>:<span class="hljs-number">44</span> - loss: <span class="hljs-number">0.3019</span> - acc: <span class="hljs-number">1.0000</span>
+ <span class="hljs-number">3</span>/<span class="hljs-number">13</span> [=====&gt;........................] - ETA: <span class="hljs-number">2</span>:<span class="hljs-number">35</span> - loss: <span class="hljs-number">0.2613</span> - acc: <span class="hljs-number">1.0000</span>
+ <span class="hljs-number">4</span>/<span class="hljs-number">13</span> [========&gt;.....................] - ETA: <span class="hljs-number">2</span>:<span class="hljs-number">01</span> - loss: <span class="hljs-number">0.2419</span> - acc: <span class="hljs-number">0.9844</span>
+ <span class="hljs-number">5</span>/<span class="hljs-number">13</span> [==========&gt;...................] - ETA: <span class="hljs-number">1</span>:<span class="hljs-number">49</span> - loss: <span class="hljs-number">0.2644</span> - acc: <span class="hljs-number">0.9688</span>
+ <span class="hljs-number">6</span>/<span class="hljs-number">13</span> [============&gt;.................] - ETA: <span class="hljs-number">1</span>:<span class="hljs-number">36</span> - loss: <span class="hljs-number">0.2494</span> - acc: <span class="hljs-number">0.9688</span>
+ <span class="hljs-number">7</span>/<span class="hljs-number">13</span> [===============&gt;..............] - ETA: <span class="hljs-number">1</span>:<span class="hljs-number">24</span> - loss: <span class="hljs-number">0.2362</span> - acc: <span class="hljs-number">0.9732</span>
+ <span class="hljs-number">8</span>/<span class="hljs-number">13</span> [=================&gt;............] - ETA: <span class="hljs-number">1</span>:<span class="hljs-number">10</span> - loss: <span class="hljs-number">0.2234</span> - acc: <span class="hljs-number">0.9766</span>
+ <span class="hljs-number">9</span>/<span class="hljs-number">13</span> [===================&gt;..........] - ETA: <span class="hljs-number">58</span>s - loss: <span class="hljs-number">0.2154</span> - acc: <span class="hljs-number">0.9757</span> 
+<span class="hljs-number">10</span>/<span class="hljs-number">13</span> [======================&gt;.......] - ETA: <span class="hljs-number">44</span>s - loss: <span class="hljs-number">0.2062</span> - acc: <span class="hljs-number">0.9781</span>
+<span class="hljs-number">11</span>/<span class="hljs-number">13</span> [========================&gt;.....] - ETA: <span class="hljs-number">29</span>s - loss: <span class="hljs-number">0.2007</span> - acc: <span class="hljs-number">0.9801</span>
+<span class="hljs-number">12</span>/<span class="hljs-number">13</span> [==========================&gt;...] - ETA: <span class="hljs-number">14</span>s - loss: <span class="hljs-number">0.1990</span> - acc: <span class="hljs-number">0.9792</span>
+
+
+<span class="hljs-number">13</span>/<span class="hljs-number">13</span> [==============================] - <span class="hljs-number">243</span>s <span class="hljs-number">19</span>s/step - loss: <span class="hljs-number">0.1923</span> - acc: <span class="hljs-number">0.9809</span> - val_loss: <span class="hljs-number">0.1929</span> - val_acc: <span class="hljs-number">0.9300</span>
+</code></pre>
+<h3 id="3112-&#x6570;&#x636E;&#x96C6;&#x4EE5;&#x53CA;&#x8FC1;&#x79FB;&#x9700;&#x6C42;">3.1.1.2 &#x6570;&#x636E;&#x96C6;&#x4EE5;&#x53CA;&#x8FC1;&#x79FB;&#x9700;&#x6C42;</h3>
+<p>&#x6570;&#x636E;&#x96C6;&#x662F;&#x67D0;&#x573A;&#x666F;&#x4E0B;5&#x4E2A;&#x7C7B;&#x522B;&#x56FE;&#x7247;&#x7684;&#x8BC6;&#x522B;</p>
+<p><img src="../images/5&#x4E2A;&#x7C7B;&#x522B;&#x8BC6;&#x522B;.png" alt=""></p>
+<p>&#x6211;&#x4EEC;&#x5229;&#x7528;&#x73B0;&#x6709;&#x7684;VGG&#x6A21;&#x578B;&#x53BB;&#x8FDB;&#x884C;&#x5FAE;&#x8C03;</p>
+<h3 id="3113-&#x601D;&#x8DEF;&#x548C;&#x6B65;&#x9AA4;">3.1.1.3 &#x601D;&#x8DEF;&#x548C;&#x6B65;&#x9AA4;</h3>
+<ul>
+<li>&#x8BFB;&#x53D6;&#x672C;&#x5730;&#x7684;&#x56FE;&#x7247;&#x6570;&#x636E;&#x4EE5;&#x53CA;&#x7C7B;&#x522B;<ul>
+<li>keras.preprocessing.image import ImageDataGenerator&#x63D0;&#x4F9B;&#x4E86;&#x8BFB;&#x53D6;&#x8F6C;&#x6362;&#x529F;&#x80FD;</li>
+</ul>
+</li>
+<li>&#x6A21;&#x578B;&#x7684;&#x7ED3;&#x6784;&#x4FEE;&#x6539;&#xFF08;&#x6DFB;&#x52A0;&#x6211;&#x4EEC;&#x81EA;&#x5B9A;&#x7684;&#x5206;&#x7C7B;&#x5C42;&#xFF09;</li>
+<li>freeze&#x6389;&#x539F;&#x59CB;VGG&#x6A21;&#x578B;</li>
+<li>&#x7F16;&#x8BD1;&#x4EE5;&#x53CA;&#x8BAD;&#x7EC3;&#x548C;&#x4FDD;&#x5B58;&#x6A21;&#x578B;&#x65B9;&#x5F0F;</li>
+<li>&#x8F93;&#x5165;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x9884;&#x6D4B;</li>
+</ul>
+<h3 id="3114--&#x8BAD;&#x7EC3;&#x7684;&#x65F6;&#x5019;&#x8BFB;&#x53D6;&#x672C;&#x5730;&#x56FE;&#x7247;&#x4EE5;&#x53CA;&#x7C7B;&#x522B;">3.1.1.4  &#x8BAD;&#x7EC3;&#x7684;&#x65F6;&#x5019;&#x8BFB;&#x53D6;&#x672C;&#x5730;&#x56FE;&#x7247;&#x4EE5;&#x53CA;&#x7C7B;&#x522B;</h3>
+<ul>
+<li>train_generator = ImageDataGenerator()<ul>
+<li><strong>&#x751F;&#x4EA7;&#x56FE;&#x7247;&#x7684;&#x6279;&#x6B21;&#x5F20;&#x91CF;&#x503C;&#x5E76;&#x4E14;&#x63D0;&#x4F9B;&#x6570;&#x636E;&#x589E;&#x5F3A;&#x529F;&#x80FD;</strong></li>
+<li>rescale=1.0 / 255,:&#x6807;&#x51C6;&#x5316;</li>
+<li>zca_whitening=False: # zca&#x767D;&#x5316;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x9488;&#x5BF9;&#x56FE;&#x7247;&#x8FDB;&#x884C;PCA&#x964D;&#x7EF4;&#x64CD;&#x4F5C;&#xFF0C;&#x51CF;&#x5C11;&#x56FE;&#x7247;&#x7684;&#x5197;&#x4F59;&#x4FE1;&#x606F; </li>
+<li>rotation_range=20:&#x9ED8;&#x8BA4;0&#xFF0C; &#x65CB;&#x8F6C;&#x89D2;&#x5EA6;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x89D2;&#x5EA6;&#x8303;&#x56F4;&#x968F;&#x673A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x503C;</li>
+<li>width_shift_range=0.2,:&#x9ED8;&#x8BA4;0&#xFF0C;&#x6C34;&#x5E73;&#x5E73;&#x79FB;</li>
+<li>height_shift_range=0.2:&#x9ED8;&#x8BA4;0&#xFF0C; &#x5782;&#x76F4;&#x5E73;&#x79FB;</li>
+<li>shear_range=0.2:# &#x5E73;&#x79FB;&#x53D8;&#x6362;</li>
+<li>zoom_range=0.2:</li>
+<li>horizontal_flip=True:&#x6C34;&#x5E73;&#x7FFB;&#x8F6C;</li>
+</ul>
+</li>
+</ul>
+<h5 id="&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x4ECB;&#x7ECD;">&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x4ECB;&#x7ECD;</h5>
+<ul>
+<li>&#x4F7F;&#x7528;flow(x, y, batch_size)</li>
+</ul>
+<pre><code class="lang-python">(x_train, y_train), (x_test, y_test) = cifar10.load_data()
+
+datagen = ImageDataGenerator(
+        featurewise_center=<span class="hljs-keyword">True</span>,
+        featurewise_std_normalization=<span class="hljs-keyword">True</span>,
+        rotation_range=<span class="hljs-number">20</span>,
+        width_shift_range=<span class="hljs-number">0.2</span>,
+        height_shift_range=<span class="hljs-number">0.2</span>,
+        horizontal_flip=<span class="hljs-keyword">True</span>)
+
+<span class="hljs-keyword">for</span> e <span class="hljs-keyword">in</span> range(epochs):
+        print(<span class="hljs-string">&apos;Epoch&apos;</span>, e)
+        batches = <span class="hljs-number">0</span>
+        <span class="hljs-keyword">for</span> x_batch, y_batch <span class="hljs-keyword">in</span> datagen.flow(x_train, y_train, batch_size=<span class="hljs-number">32</span>):
+            model.fit(x_batch, y_batch)
+</code></pre>
+<ul>
+<li><p>&#x4F7F;&#x7528;train_generator.flow_from_directory(</p>
+<ul>
+<li><p>directory=path,# &#x8BFB;&#x53D6;&#x76EE;&#x5F55;</p>
+</li>
+<li><p>target_size=(h,w),# &#x76EE;&#x6807;&#x5F62;&#x72B6;</p>
+</li>
+<li><p>batch_size=size,# &#x6279;&#x6570;&#x91CF;&#x5927;&#x5C0F;</p>
+</li>
+<li><p>class_mode=&apos;binary&apos;, # &#x76EE;&#x6807;&#x503C;&#x683C;&#x5F0F;&#xFF0C;One of &quot;categorical&quot;, &quot;binary&quot;, &quot;sparse&quot;,</p>
+<ul>
+<li>&quot;categorical&quot; &#xFF1A;2D one-hot encoded labels</li>
+<li>&quot;binary&quot; will be 1D binary labels</li>
+</ul>
+</li>
+<li><p>shuffle=True</p>
+</li>
+</ul>
+<ul>
+<li><p>&#x8FD9;&#x4E2A;API&#x56FA;&#x5B9A;&#x4E86;&#x8BFB;&#x53D6;&#x7684;&#x76EE;&#x5F55;&#x683C;&#x5F0F;&#xFF0C;&#x53C2;&#x8003;&#xFF1A;</p>
+</li>
+<li><pre><code class="lang-python">data/
+    train/
+        dogs/
+            dog001.jpg
+            dog002.jpg
+            ...
+        cats/
+            cat001.jpg
+            cat002.jpg
+            ...
+    validation/
+        dogs/
+            dog001.jpg
+            dog002.jpg
+            ...
+        cats/
+            cat001.jpg
+            cat002.jpg
+            ...
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-python">train_datagen = ImageDataGenerator(
+            rescale=<span class="hljs-number">1.</span>/<span class="hljs-number">255</span>,
+            shear_range=<span class="hljs-number">0.2</span>,
+            zoom_range=<span class="hljs-number">0.2</span>,
+            horizontal_flip=<span class="hljs-keyword">True</span>)
+
+test_datagen = ImageDataGenerator(rescale=<span class="hljs-number">1.</span>/<span class="hljs-number">255</span>)
+
+train_generator = train_datagen.flow_from_directory(
+                                                    <span class="hljs-string">&apos;data/train&apos;</span>,
+                                                    target_size=(<span class="hljs-number">150</span>, <span class="hljs-number">150</span>),
+                                                    batch_size=<span class="hljs-number">32</span>,
+                                                    class_mode=<span class="hljs-string">&apos;binary&apos;</span>)
+
+validation_generator = test_datagen.flow_from_directory(
+                                                        <span class="hljs-string">&apos;data/validation&apos;</span>,
+                                                        target_size=(<span class="hljs-number">150</span>, <span class="hljs-number">150</span>),
+                                                        batch_size=<span class="hljs-number">32</span>,
+                                                        class_mode=<span class="hljs-string">&apos;binary&apos;</span>)
+<span class="hljs-comment"># &#x4F7F;&#x7528;fit_generator</span>
+model.fit_generator(
+train_generator,
+steps_per_epoch=<span class="hljs-number">2000</span>,
+epochs=<span class="hljs-number">50</span>,
+validation_data=validation_generator,
+validation_steps=<span class="hljs-number">800</span>)
+</code></pre>
+<p>&#x4EE3;&#x7801;&#xFF1A;</p>
+<p>&#x9996;&#x5148;&#x5BFC;&#x5165;&#x5305;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+<span class="hljs-keyword">from</span> tensorflow <span class="hljs-keyword">import</span> keras
+<span class="hljs-keyword">from</span> tensorflow.python.keras.preprocessing.image <span class="hljs-keyword">import</span> ImageDataGenerator
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x8FC1;&#x79FB;&#x5B66;&#x4E60;&#x7684;&#x7C7B;&#xFF0C;&#x7136;&#x540E;&#x8FDB;&#x884C;&#x76F8;&#x5173;&#x5C5E;&#x6027;&#x8BBE;&#x7F6E;&#x548C;&#x8BFB;&#x53D6;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TransferModel</span><span class="hljs-params">(object)</span>:</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+
+        self.model_size = (<span class="hljs-number">224</span>, <span class="hljs-number">224</span>)
+        self.train_dir = <span class="hljs-string">&quot;./data/train/&quot;</span>
+        self.test_dir = <span class="hljs-string">&quot;./data/test/&quot;</span>
+        self.batch_size = <span class="hljs-number">32</span>
+
+        self.train_generator = ImageDataGenerator(rescale=<span class="hljs-number">1.0</span> / <span class="hljs-number">255</span>)
+        self.test_generator = ImageDataGenerator(rescale=<span class="hljs-number">1.0</span> / <span class="hljs-number">255</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read_img_to_generator</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        &#x8BFB;&#x53D6;&#x672C;&#x5730;&#x56FA;&#x5B9A;&#x683C;&#x5F0F;&#x6570;&#x636E;
+        :return:
+        &quot;&quot;&quot;</span>
+        train_gen = self.train_generator.flow_from_directory(directory=self.train_dir,
+                                                             target_size=self.model_size,
+                                                             batch_size=self.batch_size,
+                                                             class_mode=<span class="hljs-string">&apos;binary&apos;</span>,
+                                                             shuffle=<span class="hljs-keyword">True</span>)
+        test_gen = self.test_generator.flow_from_directory(directory=self.test_dir,
+                                                           target_size=self.model_size,
+                                                           batch_size=self.batch_size,
+                                                           class_mode=<span class="hljs-string">&apos;binary&apos;</span>,
+                                                           shuffle=<span class="hljs-keyword">True</span>)
+        <span class="hljs-keyword">return</span> train_gen, test_gen
+</code></pre>
+<p>&#x6253;&#x5370;&#x7ED3;&#x679C;&#x4E3A;</p>
+<pre><code class="lang-python">&lt;keras_preprocessing.image.DirectoryIterator object at <span class="hljs-number">0x12f52cf28</span>&gt;
+</code></pre>
+<h3 id="3115-vgg&#x6A21;&#x578B;&#x7684;&#x4FEE;&#x6539;&#x6DFB;&#x52A0;&#x5168;&#x8FDE;&#x63A5;&#x5C42;globalaveragepooling2d">3.1.1.5 VGG&#x6A21;&#x578B;&#x7684;&#x4FEE;&#x6539;&#x6DFB;&#x52A0;&#x5168;&#x8FDE;&#x63A5;&#x5C42;-GlobalAveragePooling2D</h3>
+<ul>
+<li>notop&#x6A21;&#x578B;&#xFF1A;<ul>
+<li><strong>&#x662F;&#x5426;&#x5305;&#x542B;&#x6700;&#x540E;&#x7684;3&#x4E2A;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#xFF08;whether to include the 3 fully-connected layers at the top of the network&#xFF09;&#x3002;&#x7528;&#x6765;&#x505A;fine-tuning&#x4E13;&#x7528;&#xFF0C;&#x4E13;&#x95E8;&#x5F00;&#x6E90;&#x4E86;&#x8FD9;&#x7C7B;&#x6A21;&#x578B;&#x3002;</strong> </li>
+</ul>
+</li>
+</ul>
+<p>&#x2018;weights=&apos;imagenet&apos;&#x2019;&#xFF0C;&#x610F;&#x601D;&#x662F;VGG&#x5728;imagenet&#x6BD4;&#x8D5B;&#x4E2D;&#x9884;&#x8BAD;&#x7EC3;&#x7684;&#x6743;&#x91CD;&#xFF0C;&#x4F7F;&#x7528;resnet&#x8BAD;&#x7EC3;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x5728;__init__&#x4E2D;&#x6DFB;&#x52A0;</span>
+self.base_model = VGG16(weights=<span class="hljs-string">&apos;imagenet&apos;</span>, include_top=<span class="hljs-keyword">False</span>)
+</code></pre>
+<p>base_model&#x4F1A;&#x6709;&#x76F8;&#x5173;&#x5C5E;&#x6027;&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x5165;&#x7ED3;&#x6784;&#xFF1A;inputs&#xFF0C;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x6784;&#xFF0C;&#x6211;&#x4EEC;&#x4FEE;&#x6539;&#x9700;&#x8981;&#x5F97;&#x5230;&#x5DF2;&#x6709;VGG&#x7684;&#x8F93;&#x5165;&#x548C;&#x81EA;&#x5B9A;&#x4E49;&#x6A21;&#x578B;&#x7684;&#x8F93;&#x51FA;&#x6784;&#x5EFA;&#x6210;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6A21;&#x578B;&#x3002;</p>
+<p>&#x6A21;&#x578B;&#x6E90;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-python">    <span class="hljs-keyword">if</span> include_top:
+        <span class="hljs-comment"># Classification block</span>
+        x = layers.Flatten(name=<span class="hljs-string">&apos;flatten&apos;</span>)(x)
+        x = layers.Dense(<span class="hljs-number">4096</span>, activation=<span class="hljs-string">&apos;relu&apos;</span>, name=<span class="hljs-string">&apos;fc1&apos;</span>)(x)
+        x = layers.Dense(<span class="hljs-number">4096</span>, activation=<span class="hljs-string">&apos;relu&apos;</span>, name=<span class="hljs-string">&apos;fc2&apos;</span>)(x)
+        x = layers.Dense(classes, activation=<span class="hljs-string">&apos;softmax&apos;</span>, name=<span class="hljs-string">&apos;predictions&apos;</span>)(x)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> pooling == <span class="hljs-string">&apos;avg&apos;</span>:
+            x = layers.GlobalAveragePooling2D()(x)
+        <span class="hljs-keyword">elif</span> pooling == <span class="hljs-string">&apos;max&apos;</span>:
+            x = layers.GlobalMaxPooling2D()(x)
+</code></pre>
+<ul>
+<li><strong>&#x4E00;&#x4E2A;GlobalAveragePooling2D + &#x4E24;&#x4E2A;&#x5168;&#x8FDE;&#x63A5;&#x5C42;</strong><ul>
+<li>&#x5728;&#x56FE;&#x50CF;&#x5206;&#x7C7B;&#x4EFB;&#x52A1;&#x4E2D;&#xFF0C;&#x6A21;&#x578B;&#x7ECF;&#x8FC7;&#x6700;&#x540E;CNN&#x5C42;&#x540E;&#x7684;&#x5C3A;&#x5BF8;&#x4E3A;[bath_size, img_width, img_height, channels]&#xFF0C;&#x901A;&#x5E38;&#x7684;&#x505A;&#x6CD5;&#x662F;&#xFF1A;&#x63A5;&#x4E00;&#x4E2A;flatten layer&#xFF0C;&#x5C06;&#x5C3A;&#x5BF8;&#x53D8;&#x4E3A;[batch_size, w <em> h </em> channels]&#x518D;&#x81F3;&#x5C11;&#x63A5;&#x4E00;&#x4E2A;FC layer&#xFF0C;&#x8FD9;&#x6837;&#x505A;&#x7684;&#x6700;&#x5927;&#x95EE;&#x9898;&#x662F;&#xFF1A;<strong>&#x6A21;&#x578B;&#x53C2;&#x6570;&#x591A;&#xFF0C;&#x4E14;&#x5BB9;&#x6613;&#x8FC7;&#x62DF;&#x5408;&#x3002;</strong></li>
+<li><strong>&#x5229;&#x7528;pooling layer&#x6765;&#x66FF;&#x4EE3;&#x6700;&#x540E;&#x7684;FC layer</strong></li>
+</ul>
+</li>
+</ul>
+<p>&#x89E3;&#x91CA;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> keras.layers <span class="hljs-keyword">import</span> Dense, Input, Conv2D
+<span class="hljs-keyword">from</span> keras.layers <span class="hljs-keyword">import</span> MaxPooling2D, GlobalAveragePooling2D
+
+x = Input(shape=[<span class="hljs-number">8</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2048</span>])  
+<span class="hljs-comment"># &#x5047;&#x5B9A;&#x6700;&#x540E;&#x4E00;&#x5C42;CNN&#x7684;&#x5C42;&#x8F93;&#x51FA;&#x4E3A;(None, 8, 8, 2048)</span>
+x = GlobalAveragePooling2D(name=<span class="hljs-string">&apos;avg_pool&apos;</span>)(x)  <span class="hljs-comment"># shape=(?, 2048)</span>
+<span class="hljs-comment"># &#x53D6;&#x6BCF;&#x4E00;&#x4E2A;&#x7279;&#x5F81;&#x56FE;&#x7684;&#x5E73;&#x5747;&#x503C;&#x4F5C;&#x4E3A;&#x8F93;&#x51FA;&#xFF0C;&#x7528;&#x4EE5;&#x66FF;&#x4EE3;&#x5168;&#x8FDE;&#x63A5;&#x5C42;</span>
+x = Dense(<span class="hljs-number">1000</span>, activation=<span class="hljs-string">&apos;softmax&apos;</span>, name=<span class="hljs-string">&apos;predictions&apos;</span>)(x)  <span class="hljs-comment"># shape=(?, 1000)</span>
+<span class="hljs-comment"># 1000&#x4E3A;&#x7C7B;&#x522B;</span>
+</code></pre>
+<ul>
+<li>5&#x7C7B;&#x56FE;&#x7247;&#x8BC6;&#x522B;&#x6A21;&#x578B;&#x4FEE;&#x6539;</li>
+</ul>
+<p>&#x6211;&#x4EEC;&#x9700;&#x8981;&#x62FF;&#x5230;&#x57FA;&#x7840;VGG&#x6A21;&#x578B;&#xFF0C;&#x5E76;&#x4E14;VGG&#x63D0;&#x4F9B;&#x6240;&#x6709;&#x5C42;&#x53C2;&#x6570;&#x8BAD;&#x7EC3;&#x597D;&#x7684;&#x6A21;&#x578B;&#x548C;&#x6CA1;&#x6709;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#x53C2;&#x6570;&#x7684;&#x6A21;&#x578B;notop&#x6A21;&#x578B;</p>
+<pre><code>from tensorflow.python.keras import Model
+</code></pre><pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">refine_vgg_model</span><span class="hljs-params">(self)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+        &#x6DFB;&#x52A0;&#x5C3E;&#x90E8;&#x5168;&#x8FDE;&#x63A5;&#x5C42;
+        :return:
+        &quot;&quot;&quot;</span>
+    <span class="hljs-comment"># [&lt;tf.Tensor &apos;block5_pool/MaxPool:0&apos; shape=(?, ?, ?, 512) dtype=float32&gt;]</span>
+    x = self.base_model.outputs[<span class="hljs-number">0</span>]
+
+    <span class="hljs-comment"># &#x8F93;&#x51FA;&#x5230;&#x5168;&#x8FDE;&#x63A5;&#x5C42;&#xFF0C;&#x52A0;&#x4E0A;&#x5168;&#x5C40;&#x6C60;&#x5316; [None, ?, ?, 512]----&gt;[None, 1 * 512]</span>
+    x = keras.layers.GlobalAveragePooling2D()(x)
+    x = keras.layers.Dense(<span class="hljs-number">1024</span>, activation=tf.nn.relu)(x)
+    y_predict = keras.layers.Dense(<span class="hljs-number">5</span>, activation=tf.nn.softmax)(x)
+
+    model = keras.Model(inputs=self.base_model.inputs, outputs=y_predict)
+
+    <span class="hljs-keyword">return</span> model
+</code></pre>
+<h3 id="3116-freeze-vgg&#x6A21;&#x578B;&#x7ED3;&#x6784;">3.1.1.6 freeze VGG&#x6A21;&#x578B;&#x7ED3;&#x6784;</h3>
+<p>&#x76EE;&#x7684;&#xFF1A;&#x8BA9;VGG&#x7ED3;&#x6784;&#x5F53;&#x4E2D;&#x7684;&#x6743;&#x91CD;&#x53C2;&#x6570;&#x4E0D;&#x53C2;&#x4E0E;&#x8BAD;&#x7EC3;,&#x53EA;&#x8BAD;&#x7EC3;&#x6211;&#x4EEC;&#x6DFB;&#x52A0;&#x7684;&#x6700;&#x540E;&#x4E24;&#x5C42;&#x5168;&#x8FDE;&#x63A5;&#x7F51;&#x7EDC;&#x7684;&#x6743;&#x91CD;&#x53C2;&#x6570;</p>
+<ul>
+<li>&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x6BCF;&#x4E00;&#x5C42;&#x7684;layer.trainable=False</li>
+</ul>
+<pre><code class="lang-python">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">freeze_vgg_model</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        freeze&#x6389;VGG&#x7684;&#x7ED3;&#x6784;
+        :return:
+        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> self.base_model.layers:
+            layer.trainable = <span class="hljs-keyword">False</span>
+</code></pre>
+<h3 id="3117-&#x7F16;&#x8BD1;&#x548C;&#x8BAD;&#x7EC3;">3.1.1.7 &#x7F16;&#x8BD1;&#x548C;&#x8BAD;&#x7EC3;</h3>
+<ul>
+<li>&#x7F16;&#x8BD1;</li>
+</ul>
+<p>&#x540C;&#x6837;&#x8FD8;&#x662F;&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#xFF0C; &#x5728;&#x8FC1;&#x79FB;&#x5B66;&#x4E60;&#x4E2D;&#x7B97;&#x6CD5;&#xFF1A;&#x5B66;&#x4E60;&#x7387;&#x521D;&#x59CB;&#x5316;&#x8F83;&#x5C0F;&#x7684;&#x503C;&#xFF0C;0.001,0.0001&#xFF0C;&#x56E0;&#x4E3A;&#x5DF2;&#x7ECF;&#x5728;&#x5DF2;&#x8BAD;&#x7EC3;&#x597D;&#x7684;&#x6A21;&#x578B;&#x57FA;&#x7840;&#x4E4B;&#x4E0A;&#x66F4;&#x65B0;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x592A;&#x5927;&#x5B66;&#x4E60;&#x7387;&#x53BB;&#x5B66;&#x4E60;</p>
+<pre><code class="lang-python">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">compile</span><span class="hljs-params">(self, model)</span>:</span>
+
+        model.compile(optimizer=keras.optimizers.Adam(),
+                      loss=keras.losses.sparse_categorical_crossentropy,
+                      metrics=[<span class="hljs-string">&apos;accuracy&apos;</span>])
+</code></pre>
+<h3 id="&#x8BAD;&#x7EC3;&#xFF0C;callbacks">&#x8BAD;&#x7EC3;&#xFF0C;callbacks</h3>
+<ul>
+<li><p>ckpt&#x4FDD;&#x5B58;&#xFF1A;&#x4F7F;&#x7528;checkpint&#x5DE5;&#x5177;,ModelCheckpoint&#x6307;&#x5B9A;&#x76F8;&#x5173;&#x53C2;&#x6570;</p>
+</li>
+<li><p>ModelCheckpoint</p>
+</li>
+</ul>
+<pre><code>keras.callbacks.ModelCheckpoint(filepath, monitor=&apos;val_loss&apos;, verbose=0, save_best_only=False, save_weights_only=False, mode=&apos;auto&apos;, period=1)
+</code></pre><p>&#x5728;&#x6BCF;&#x4E2A;&#x8BAD;&#x7EC3;&#x671F;&#x4E4B;&#x540E;&#x4FDD;&#x5B58;&#x6A21;&#x578B;&#x3002;<code>filepath</code> &#x53EF;&#x4EE5;&#x5305;&#x62EC;&#x547D;&#x540D;&#x683C;&#x5F0F;&#x9009;&#x9879;&#xFF0C;&#x53EF;&#x4EE5;&#x7531; <code>epoch</code> &#x7684;&#x503C;&#x548C; <code>logs</code> &#x7684;&#x952E;&#xFF08;&#x7531; <code>on_epoch_end</code> &#x53C2;&#x6570;&#x4F20;&#x9012;&#xFF09;&#x6765;&#x586B;&#x5145;&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFF1A;</p>
+<p><strong>&#x53C2;&#x6570;</strong></p>
+<ul>
+<li><strong>filepath</strong>: &#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x4FDD;&#x5B58;&#x6A21;&#x578B;&#x7684;&#x8DEF;&#x5F84;&#xFF0C; &#x5982;&#x679C; <code>filepath</code> &#x662F; <code>weights.{epoch:02d}-{val_loss:.2f}.hdf5</code>&#xFF0C; &#x90A3;&#x4E48;&#x6A21;&#x578B;&#x88AB;&#x4FDD;&#x5B58;&#x7684;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x5C31;&#x4F1A;&#x6709;&#x8BAD;&#x7EC3;&#x8F6E;&#x6570;&#x548C;&#x9A8C;&#x8BC1;&#x635F;&#x5931;&#x3002;</li>
+<li><strong>monitor</strong>: &#x88AB;&#x76D1;&#x6D4B;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x635F;&#x5931;&#x51FD;&#x6570;&#x6216;&#x8005;&#x51C6;&#x786E;&#x7387;</li>
+<li><strong>verbose</strong>: &#x8BE6;&#x7EC6;&#x4FE1;&#x606F;&#x6A21;&#x5F0F;&#xFF0C;0 &#x6216;&#x8005; 1 &#xFF0C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x6253;&#x5370;</li>
+<li><strong>save_best_only</strong>: &#x5982;&#x679C; <code>save_best_only=True</code>&#xFF0C; &#x88AB;&#x76D1;&#x6D4B;&#x6570;&#x636E;&#x7684;&#x6700;&#x4F73;&#x6A21;&#x578B;&#x5C31;&#x4E0D;&#x4F1A;&#x88AB;&#x8986;&#x76D6;&#xFF0C;&#x53EA;&#x4FDD;&#x7559;&#x6700;&#x597D;&#x7684;</li>
+<li><strong>mode</strong>: {auto, min, max} &#x7684;&#x5176;&#x4E2D;&#x4E4B;&#x4E00;&#x3002; &#x5982;&#x679C; <code>save_best_only=True</code>&#xFF0C;&#x90A3;&#x4E48;&#x662F;&#x5426;&#x8986;&#x76D6;&#x4FDD;&#x5B58;&#x6587;&#x4EF6;&#x7684;&#x51B3;&#x5B9A;&#x5C31;&#x53D6;&#x51B3;&#x4E8E;&#x88AB;&#x76D1;&#x6D4B;&#x6570;&#x636E;&#x7684;&#x6700;&#x5927;&#x6216;&#x8005;&#x6700;&#x5C0F;&#x503C;&#x3002; &#x5BF9;&#x4E8E; <code>val_acc</code>&#xFF0C;&#x6A21;&#x5F0F;&#x5C31;&#x4F1A;&#x662F; <code>max</code>&#xFF0C;&#x800C;&#x5BF9;&#x4E8E; <code>val_loss</code>&#xFF0C;&#x6A21;&#x5F0F;&#x5C31;&#x9700;&#x8981;&#x662F; <code>min</code>&#xFF0C;&#x7B49;&#x7B49;&#x3002; &#x5728; <code>auto</code> &#x6A21;&#x5F0F;&#x4E2D;&#xFF0C;&#x65B9;&#x5411;&#x4F1A;&#x81EA;&#x52A8;&#x4ECE;&#x88AB;&#x76D1;&#x6D4B;&#x7684;&#x6570;&#x636E;&#x7684;&#x540D;&#x5B57;&#x4E2D;&#x5224;&#x65AD;&#x51FA;&#x6765;&#x3002;</li>
+<li><strong>save_weights_only</strong>: &#x5982;&#x679C; True&#xFF0C;&#x90A3;&#x4E48;&#x53EA;&#x6709;&#x6A21;&#x578B;&#x7684;&#x6743;&#x91CD;&#x4F1A;&#x88AB;&#x4FDD;&#x5B58; (<code>model.save_weights(filepath)</code>)&#xFF0C; &#x5426;&#x5219;&#x7684;&#x8BDD;&#xFF0C;&#x6574;&#x4E2A;&#x6A21;&#x578B;&#x4F1A;&#x88AB;&#x4FDD;&#x5B58; (<code>model.save(filepath)</code>)&#x3002;</li>
+<li><strong>period</strong>: &#x6BCF;&#x4E2A;&#x68C0;&#x67E5;&#x70B9;&#x4E4B;&#x95F4;&#x7684;&#x95F4;&#x9694;&#xFF08;&#x8BAD;&#x7EC3;&#x8F6E;&#x6570;&#xFF09;&#x3002;</li>
+</ul>
+<pre><code class="lang-python">check = ModelCheckpoint(<span class="hljs-string">&apos;./ckpt/transfer_{epoch:02d}-{val_acc:.2f}.h5&apos;</span>,
+                                monitor=<span class="hljs-string">&apos;val_acc&apos;</span>,
+                                save_best_only=<span class="hljs-keyword">True</span>,
+                                save_weights_only=<span class="hljs-keyword">True</span>,
+                                mode=<span class="hljs-string">&apos;auto&apos;</span>,
+                                period=<span class="hljs-number">1</span>)
+</code></pre>
+<ul>
+<li>save_weights</li>
+</ul>
+<pre><code class="lang-python">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fit</span><span class="hljs-params">(self, model, train_gen, test_gen)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;
+        :param model:
+        :param train_gen:
+        :param test_gen:
+        :return:
+        &quot;&quot;&quot;</span>
+        check = ModelCheckpoint(<span class="hljs-string">&apos;./ckpt/transferModel&apos;</span>,
+                                monitor=<span class="hljs-string">&apos;val_loss&apos;</span>, <span class="hljs-comment"># &#x9700;&#x8981;&#x76D1;&#x89C6;&#x7684;&#x503C;</span>
+                                save_best_only=<span class="hljs-keyword">False</span>,
+                                save_weights_only=<span class="hljs-keyword">False</span>,
+                                mode=<span class="hljs-string">&apos;auto&apos;</span>,
+                                period=<span class="hljs-number">1</span>)
+
+        model.fit_generator(train_gen, epochs=<span class="hljs-number">1</span>, validation_data=test_gen, callbacks=[check])
+
+        <span class="hljs-comment"># model.save_weights(&quot;./Transfer.h5&quot;)</span>
+</code></pre>
+<ul>
+<li>main&#x51FD;&#x6570;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    tm = TransferModel()
+
+    train_gen, test_gen = tm.read_img_to_generator()
+    model = tm.refine_vgg_model()
+
+    tm.freeze_vgg_model()
+    tm.compile(model)
+    tm.fit(model, train_gen, test_gen)
+</code></pre>
+<h3 id="3118-&#x8FDB;&#x884C;&#x9884;&#x6D4B;">3.1.1.8 &#x8FDB;&#x884C;&#x9884;&#x6D4B;</h3>
+<p>&#x9884;&#x6D4B;&#x7684;&#x6B65;&#x9AA4;&#x5C31;&#x662F;&#x8BFB;&#x53D6;&#x56FE;&#x7247;&#x4EE5;&#x53CA;&#x5904;&#x7406;&#x5230;&#x6A21;&#x578B;&#x4E2D;&#x9884;&#x6D4B;&#xFF0C;&#x52A0;&#x8F7D;&#x6211;&#x4EEC;&#x8BAD;&#x7EC3;&#x7684;&#x6A21;&#x578B;</p>
+<pre><code class="lang-python">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict</span><span class="hljs-params">(self, model)</span>:</span>
+
+        model.load_weights(<span class="hljs-string">&quot;./Transfer.h5&quot;</span>)
+
+        <span class="hljs-comment"># 2&#x3001;&#x5BF9;&#x56FE;&#x7247;&#x8FDB;&#x884C;&#x52A0;&#x8F7D;&#x548C;&#x7C7B;&#x578B;&#x4FEE;&#x6539;</span>
+        image = load_img(<span class="hljs-string">&quot;./data/test/dinosaurs/402.jpg&quot;</span>, target_size=(<span class="hljs-number">224</span>, <span class="hljs-number">224</span>))
+
+        print(image)
+        <span class="hljs-comment"># &#x8F6C;&#x6362;&#x6210;numpy array&#x6570;&#x7EC4;</span>
+        image = img_to_array(image)
+        print(<span class="hljs-string">&quot;&#x56FE;&#x7247;&#x7684;&#x5F62;&#x72B6;&#xFF1A;&quot;</span>, image.shape)
+
+        <span class="hljs-comment"># &#x5F62;&#x72B6;&#x4ECE;3&#x7EF4;&#x5EA6;&#x4FEE;&#x6539;&#x6210;4&#x7EF4;</span>
+        img = image.reshape((<span class="hljs-number">1</span>, image.shape[<span class="hljs-number">0</span>], image.shape[<span class="hljs-number">1</span>], image.shape[<span class="hljs-number">2</span>]))
+        print(<span class="hljs-string">&quot;&#x6539;&#x53D8;&#x5F62;&#x72B6;&#x7ED3;&#x679C;:&quot;</span>, img.shape)
+
+        <span class="hljs-comment"># 3&#x3001;&#x5904;&#x7406;&#x56FE;&#x50CF;&#x5185;&#x5BB9;&#xFF0C;&#x5F52;&#x4E00;&#x5316;&#x5904;&#x7406;&#x7B49;&#xFF0C;&#x8FDB;&#x884C;&#x9884;&#x6D4B;</span>
+        img = preprocess_input(img)
+        print(img.shape)
+        y_predict = model.predict(img)
+
+        index = np.argmax(y_predict, axis=<span class="hljs-number">1</span>)
+
+        print(self.label_dict[str(index[<span class="hljs-number">0</span>])])
+</code></pre>
+<p>&#x5EFA;&#x7ACB;&#x56FE;&#x7247;&#x7C7B;&#x522B;&#x7684;&#x5B57;&#x5178;</p>
+<pre><code class="lang-python">self.label_dict = {
+            <span class="hljs-string">&apos;0&apos;</span>: <span class="hljs-string">&apos;bus&apos;</span>,
+            <span class="hljs-string">&apos;1&apos;</span>: <span class="hljs-string">&apos;dinosaurs&apos;</span>,
+            <span class="hljs-string">&apos;2&apos;</span>: <span class="hljs-string">&apos;elephants&apos;</span>,
+            <span class="hljs-string">&apos;3&apos;</span>: <span class="hljs-string">&apos;flowers&apos;</span>,
+            <span class="hljs-string">&apos;4&apos;</span>: <span class="hljs-string">&apos;horse&apos;</span>
+        }
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../day03/section7.html" class="navigation navigation-prev " aria-label="Previous page: CNN网络实战技巧与迁移学习"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../day03/section9.html" class="navigation navigation-next " aria-label="Next page: 总结"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

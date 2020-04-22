@@ -1,0 +1,1447 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>TensorFlow Client对接模型服务 | 深度学习课程</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-katex/katex.min.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../day07/section6.html" />
+    
+    
+    <link rel="prev" href="../day07/section4.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="8.5"
+        data-chapter-title="TensorFlow Client对接模型服务"
+        data-filepath="day07/section5.md"
+        data-basepath=".."
+        data-revision="Mon Feb 25 2019 13:33:47 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="DeepLearning/index.html">
+            
+                
+                    <a href="../DeepLearning/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        深度学习介绍
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="DeepLearning/section1.html">
+            
+                
+                    <a href="../DeepLearning/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        深度学习与机器学习的区别
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="DeepLearning/section2.html">
+            
+                
+                    <a href="../DeepLearning/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        深度学习的应用场景
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="DeepLearning/section3.html">
+            
+                
+                    <a href="../DeepLearning/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        深度学习框架介绍
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="day01/index.html">
+            
+                
+                    <a href="../day01/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        TensorFlow介绍
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="day01/section1.html">
+            
+                
+                    <a href="../day01/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        TF数据流图
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="day01/section2.html">
+            
+                
+                    <a href="../day01/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        图与TensorBoard
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="day01/section3.html">
+            
+                
+                    <a href="../day01/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        会话
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="day01/section4.html">
+            
+                
+                    <a href="../day01/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        张量
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="day01/section5.html">
+            
+                
+                    <a href="../day01/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        变量OP
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="day01/section6.html">
+            
+                
+                    <a href="../day01/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        案例：TensorFlow实现线性回归
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="day01/section7.html">
+            
+                
+                    <a href="../day01/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        逻辑回归原理与实现
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="day01/section8.html">
+            
+                
+                    <a href="../day01/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.8.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="day01/section9.html">
+            
+                
+                    <a href="../day01/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.9.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="day02/index.html">
+            
+                
+                    <a href="../day02/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        神经网络与tf.keras
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="day02/section1.html">
+            
+                
+                    <a href="../day02/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        图片基础与tf.keras介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="day02/section2.html">
+            
+                
+                    <a href="../day02/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        神经网络基础
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="day02/section3.html">
+            
+                
+                    <a href="../day02/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        神经网络原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="day02/section4.html">
+            
+                
+                    <a href="../day02/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        案例：tf.keras进行时装分类
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="day02/section5.html">
+            
+                
+                    <a href="../day02/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        深层神经网络与优化算法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="day02/section6.html">
+            
+                
+                    <a href="../day02/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="day02/section7.html">
+            
+                
+                    <a href="../day02/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="day03/index.html">
+            
+                
+                    <a href="../day03/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        卷积神经网络
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="day03/section1.html">
+            
+                
+                    <a href="../day03/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        卷积神经网络简介
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="day03/section2.html">
+            
+                
+                    <a href="../day03/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        卷积神经网络原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="day03/section3.html">
+            
+                
+                    <a href="../day03/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        案例：CIFAR100类别分类
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="day03/section4.html">
+            
+                
+                    <a href="../day03/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        正则化
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="day03/section5.html">
+            
+                
+                    <a href="../day03/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        神经网络调优与BN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="day03/section6.html">
+            
+                
+                    <a href="../day03/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        经典分类网络结构
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="day03/section7.html">
+            
+                
+                    <a href="../day03/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        CNN网络实战技巧与迁移学习
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="day03/section8.html">
+            
+                
+                    <a href="../day03/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        案例：VGG迁移学习
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="day03/section9.html">
+            
+                
+                    <a href="../day03/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="day03/section10.html">
+            
+                
+                    <a href="../day03/section10.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.10.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="day04/index.html">
+            
+                
+                    <a href="../day04/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        商品物体检测项目介绍
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="day04/section1.html">
+            
+                
+                    <a href="../day04/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        项目演示介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="day04/section2.html">
+            
+                
+                    <a href="../day04/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        目标检测概述
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="day04/section3.html">
+            
+                
+                    <a href="../day04/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        R-CNN与SPPNet
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="day04/section4.html">
+            
+                
+                    <a href="../day04/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Fast R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="day04/section5.html">
+            
+                
+                    <a href="../day04/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Faster R-CNN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="day04/section6.html">
+            
+                
+                    <a href="../day04/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="day04/section7.html">
+            
+                
+                    <a href="../day04/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="day05/index.html">
+            
+                
+                    <a href="../day05/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        YOLO与SSD
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="day05/section1.html">
+            
+                
+                    <a href="../day05/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        YOLO算法原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="day05/section2.html">
+            
+                
+                    <a href="../day05/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        SSD算法原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="day05/section3.html">
+            
+                
+                    <a href="../day05/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        SSD网络接口介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="day05/section4.html">
+            
+                
+                    <a href="../day05/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        案例：SSD物体检测
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="day05/section5.html">
+            
+                
+                    <a href="../day05/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="day05/section6.html">
+            
+                
+                    <a href="../day05/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="day06/index.html">
+            
+                
+                    <a href="../day06/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        商品检测数据集训练
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="day06/section1.html">
+            
+                
+                    <a href="../day06/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        目标检测数据集与标记
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="day06/section2.html">
+            
+                
+                    <a href="../day06/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        项目训练结构介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="day06/section3.html">
+            
+                
+                    <a href="../day06/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        标注数据读取与存储
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="day06/section4.html">
+            
+                
+                    <a href="../day06/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        商品检测模型训练
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="day06/section5.html">
+            
+                
+                    <a href="../day06/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Opencv-python介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="day06/section6.html">
+            
+                
+                    <a href="../day06/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.6.</b>
+                        
+                        案例：视频物体检测测试
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="day06/section7.html">
+            
+                
+                    <a href="../day06/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.7.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8" data-path="day06/section8.html">
+            
+                
+                    <a href="../day06/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.8.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="day07/index.html">
+            
+                
+                    <a href="../day07/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        模型导出与部署
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="day07/section1.html">
+            
+                
+                    <a href="../day07/section1.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Web与模型服务对接逻辑
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="day07/section2.html">
+            
+                
+                    <a href="../day07/section2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        模型导出
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="day07/section3.html">
+            
+                
+                    <a href="../day07/section3.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Docker部署环境使用介绍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="day07/section4.html">
+            
+                
+                    <a href="../day07/section4.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        TensorFlow Serving开启模型服务
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="8.5" data-path="day07/section5.html">
+            
+                
+                    <a href="../day07/section5.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        TensorFlow Client对接模型服务
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.6" data-path="day07/section6.html">
+            
+                
+                    <a href="../day07/section6.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.6.</b>
+                        
+                        Web Server开启
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.7" data-path="day07/section7.html">
+            
+                
+                    <a href="../day07/section7.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.7.</b>
+                        
+                        项目接口与百度机器人对接
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.8" data-path="day07/section8.html">
+            
+                
+                    <a href="../day07/section8.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.8.</b>
+                        
+                        总结
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.9" data-path="day07/section9.html">
+            
+                
+                    <a href="../day07/section9.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.9.</b>
+                        
+                        每日作业
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >深度学习课程</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="75-tensorflow-client&#x5BF9;&#x63A5;&#x6A21;&#x578B;&#x670D;&#x52A1;">7.5 TensorFlow Client&#x5BF9;&#x63A5;&#x6A21;&#x578B;&#x670D;&#x52A1;</h1>
+<h3 id="&#x5B66;&#x4E60;&#x76EE;&#x6807;">&#x5B66;&#x4E60;&#x76EE;&#x6807;</h3>
+<ul>
+<li>&#x76EE;&#x6807;<ul>
+<li>&#x65E0;</li>
+</ul>
+</li>
+<li>&#x5E94;&#x7528;<ul>
+<li>&#x5E94;&#x7528;TensorFlow Serving Client&#x5B8C;&#x6210;&#x5BF9;&#x63A5;&#x6A21;&#x578B;&#x670D;&#x52A1;&#x7F16;&#x5199;&#x4EE5;&#x53CA;&#x8FD0;&#x884C;</li>
+</ul>
+</li>
+</ul>
+<h2 id="751tensorflow-client&#x4EE3;&#x7801;&#x7F16;&#x5199;&#x5BF9;&#x63A5;web">7.5.1Tensorflow Client&#x4EE3;&#x7801;&#x7F16;&#x5199;&#x5BF9;&#x63A5;Web</h2>
+<ul>
+<li>main.py&#x5F53;&#x4E2D;&#x8C03;&#x7528;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x83B7;&#x53D6;&#x7528;&#x6237;&#x4E0A;&#x4F20;&#x56FE;&#x7247;</span>
+image = request.files.get(<span class="hljs-string">&apos;image&apos;</span>)
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> image:
+abort(<span class="hljs-number">400</span>)
+<span class="hljs-comment"># &#x9884;&#x6D4B;&#x6807;&#x8BB0;</span>
+result_img = make_prediction(image.read())
+data = result_img.read()
+result_img.close()
+</code></pre>
+<h3 id="7511-client&#x7AEF;&#x4EE3;&#x7801;">7.5.1.1 Client&#x7AEF;&#x4EE3;&#x7801;</h3>
+<p>&#x9700;&#x8981;&#x7528;&#x5230;tensorflow_serving.apis&#x4E2D;&#x7684;&#x4E24;&#x4E2A;&#x6A21;&#x5757;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tensorflow_serving.apis <span class="hljs-keyword">import</span> prediction_service_pb2_grpc
+<span class="hljs-keyword">from</span> tensorflow_serving.apis <span class="hljs-keyword">import</span> predict_pb2
+</code></pre>
+<h5 id="predictionservicepb2grpc">prediction_service_pb2_grpc</h5>
+<h5 id="predictpb2">predict_pb2</h5>
+<ul>
+<li>prediction.py&#x6587;&#x4EF6;&#x5F53;&#x4E2D;&#xFF0C;&#x5B9A;&#x4E49;make_prediction&#x51FD;&#x6570;&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x4EE3;&#x7801;&#x903B;&#x8F91;<ul>
+<li>&#x6B65;&#x9AA4;&#x5206;&#x6790;<ul>
+<li>1&#x3001;&#x83B7;&#x53D6;&#x8BFB;&#x53D6;&#x540E;&#x53F0;&#x8BFB;&#x53D6;&#x7684;&#x56FE;&#x7247;</li>
+<li>2&#x3001;&#x56FE;&#x7247;&#x5927;&#x5C0F;&#x5904;&#x7406;&#xFF0C;&#x8F6C;&#x6362;&#x6570;&#x7EC4;</li>
+<li>3&#x3001;&#x6253;&#x5F00;&#x901A;&#x9053;channel,&#x6784;&#x5EFA;stub&#xFF0C;&#x9884;&#x6D4B;&#x7ED3;&#x679C;</li>
+<li>4&#x3001;predict_pb2&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x8BF7;&#x6C42;&#x521B;&#x5EFA;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="7512-&#x6B65;&#x9AA4;&#x8FC7;&#x7A0B;&#xFF1A;">7.5.1.2 &#x6B65;&#x9AA4;&#x8FC7;&#x7A0B;&#xFF1A;</h4>
+<ul>
+<li>1&#x3001;&#x83B7;&#x53D6;&#x8BFB;&#x53D6;&#x540E;&#x53F0;&#x8BFB;&#x53D6;&#x7684;&#x56FE;&#x7247;,&#x56FE;&#x7247;&#x5927;&#x5C0F;&#x5904;&#x7406;&#xFF0C;&#x8F6C;&#x6362;&#x6570;&#x7EC4;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">make_prediction</span><span class="hljs-params">(image)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    &quot;&quot;&quot;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resize_img</span><span class="hljs-params">(image, target_size)</span>:</span>
+        img = io.BytesIO()
+        img.write(image)
+        img = Image.open(img).convert(<span class="hljs-string">&quot;RGB&quot;</span>)
+        <span class="hljs-keyword">if</span> target_size:
+            img = img.resize((target_size[<span class="hljs-number">1</span>], target_size[<span class="hljs-number">0</span>]))
+        <span class="hljs-keyword">return</span> img
+
+    image = resize_img(image, (<span class="hljs-number">300</span>, <span class="hljs-number">300</span>))
+    image_array = img_to_array(image)
+
+    feature = []
+    feature.append(image_array)
+    img_tensor = preprocess_input(np.array(feature))
+    print(img_tensor.shape)
+</code></pre>
+<ul>
+<li>2&#x3001;&#x6253;&#x5F00;&#x901A;&#x9053;channel,&#x6784;&#x5EFA;stub&#xFF0C;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#xFF0C;predict_pb2&#x8FDB;&#x884C;&#x9884;&#x6D4B;&#x8BF7;&#x6C42;&#x521B;&#x5EFA;</li>
+</ul>
+<pre><code> # &#x6253;&#x5F00;&#x5230;tensorflow server&#x7684;&#x901A;&#x9053;
+    with grpc.insecure_channel(&apos;127.0.0.1:8500&apos;) as channel:
+        stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
+
+        # &#x521B;&#x5EFA;&#x9884;&#x6D4B;&#x8BF7;&#x6C42;
+        request = predict_pb2.PredictRequest()
+        request.model_spec.name = &apos;commodity&apos;
+        request.model_spec.signature_name = signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY
+        request.inputs[&apos;images&apos;].CopyFrom(tf.contrib.util.make_tensor_proto(img_tensor, shape=[1, 300, 300, 3]))
+
+        # &#x8FDB;&#x884C;&#x9884;&#x6D4B;
+        result = stub.Predict(request)
+</code></pre><pre><code class="lang-python">{&apos;concat_3:0&apos;: &lt;tf.Tensor &apos;concat_3:0&apos; shape=(?, 7308, 21) dtype=float32&gt;}
+</code></pre>
+<ul>
+<li>3&#x3001;&#x9884;&#x6D4B;&#x7ED3;&#x679C;&#x8FC7;&#x6EE4;&#x5E76;&#x4E14;&#x89E3;&#x6790;&#xFF0C;&#x56FE;&#x7247;&#x6807;&#x8BB0;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-keyword">with</span> tf.Session() <span class="hljs-keyword">as</span> sess:
+            _res = sess.run(tf.convert_to_tensor(result.outputs[<span class="hljs-string">&apos;concat_3:0&apos;</span>]))
+        <span class="hljs-comment"># 3&#x3001;&#x6D4B;&#x8BD5;&#x9636;&#x6BB5; &#x8FDB;&#x884C;NMS &#x8FC7;&#x6EE4;</span>
+        butil = BBoxUtility(<span class="hljs-number">9</span>)
+
+        outputs = butil.detection_out(_res)
+
+    <span class="hljs-keyword">return</span> tag_picture(image_array, outputs)
+</code></pre>
+<ul>
+<li>tag_picture&#x7684;&#x903B;&#x8F91;</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">from</span> io <span class="hljs-keyword">import</span> BytesIO
+
+classes_name = [<span class="hljs-string">&apos;clothes&apos;</span>, <span class="hljs-string">&apos;pants&apos;</span>, <span class="hljs-string">&apos;shoes&apos;</span>, <span class="hljs-string">&apos;watch&apos;</span>, <span class="hljs-string">&apos;phone&apos;</span>,
+                             <span class="hljs-string">&apos;audio&apos;</span>, <span class="hljs-string">&apos;computer&apos;</span>, <span class="hljs-string">&apos;books&apos;</span>]
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">tag_picture</span><span class="hljs-params">(img, outputs)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    &#x5BF9;&#x56FE;&#x7247;&#x9884;&#x6D4B;&#x7269;&#x4F53;&#x8FDB;&#x884C;&#x753B;&#x56FE;&#x663E;&#x793A;
+    :param images_data: N&#x4E2A;&#x6D4B;&#x8BD5;&#x56FE;&#x7247;&#x6570;&#x636E;
+    :param outputs: &#x6BCF;&#x4E00;&#x4E2A;&#x56FE;&#x7247;&#x7684;&#x9884;&#x6D4B;&#x7ED3;&#x679C;
+    :return:
+    &quot;&quot;&quot;</span>
+    <span class="hljs-comment"># 1&#x3001;&#x5148;&#x83B7;&#x53D6;&#x6BCF;&#x5F20;&#x56FE;&#x7247;6&#x5217;&#x4E2D;&#x7684;&#x7ED3;&#x679C;</span>
+
+    <span class="hljs-comment"># &#x901A;&#x8FC7;i&#x83B7;&#x53D6;&#x56FE;&#x7247;label, location, xmin, ymin, xmax, ymax</span>
+    pre_label = outputs[<span class="hljs-number">0</span>][:, <span class="hljs-number">0</span>]
+    pre_conf = outputs[<span class="hljs-number">0</span>][:, <span class="hljs-number">1</span>]
+    pre_xmin = outputs[<span class="hljs-number">0</span>][:, <span class="hljs-number">2</span>]
+    pre_ymin = outputs[<span class="hljs-number">0</span>][:, <span class="hljs-number">3</span>]
+    pre_xmax = outputs[<span class="hljs-number">0</span>][:, <span class="hljs-number">4</span>]
+    pre_ymax = outputs[<span class="hljs-number">0</span>][:, <span class="hljs-number">5</span>]
+
+    top_indices = [i <span class="hljs-keyword">for</span> i, conf <span class="hljs-keyword">in</span> enumerate(pre_conf) <span class="hljs-keyword">if</span> conf &gt;= <span class="hljs-number">0.3</span>]
+    top_conf = pre_conf[top_indices]
+    top_label_indices = pre_label[top_indices].tolist()
+    top_xmin = pre_xmin[top_indices]
+    top_ymin = pre_ymin[top_indices]
+    top_xmax = pre_xmax[top_indices]
+    top_ymax = pre_ymax[top_indices]
+
+    <span class="hljs-comment"># print(&quot;pre_label:{}, pre_loc:{}, pre_xmin:{}, pre_ymin:{},pre_xmax:{},pre_ymax:{}&quot;.</span>
+    <span class="hljs-comment">#       format(tag_label, tag_loc, tag_xmin, tag_ymin, tag_xmax, tag_ymax))</span>
+
+    <span class="hljs-comment"># &#x5BF9;&#x4E8E;&#x6BCF;&#x5F20;&#x56FE;&#x7247;&#x7684;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x6807;&#x8BB0;</span>
+    colors = plt.cm.hsv(np.linspace(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">21</span>)).tolist()
+    plt.imshow(img / <span class="hljs-number">255.</span>)
+    currentAxis = plt.gca()
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(top_conf.shape[<span class="hljs-number">0</span>]):
+        xmin = int(round(top_xmin[i] * img.shape[<span class="hljs-number">1</span>]))
+        ymin = int(round(top_ymin[i] * img.shape[<span class="hljs-number">0</span>]))
+        xmax = int(round(top_xmax[i] * img.shape[<span class="hljs-number">1</span>]))
+        ymax = int(round(top_ymax[i] * img.shape[<span class="hljs-number">0</span>]))
+
+        <span class="hljs-comment"># &#x83B7;&#x53D6;&#x8BE5;&#x56FE;&#x7247;&#x9884;&#x6D4B;&#x6982;&#x7387;&#xFF0C;&#x540D;&#x79F0;&#xFF0C;&#x5B9A;&#x4E49;&#x663E;&#x793A;&#x989C;&#x8272;</span>
+        score = top_conf[i]
+        label = int(top_label_indices[i])
+        label_name = classes_name[label - <span class="hljs-number">1</span>]
+        display_txt = <span class="hljs-string">&apos;{:0.2f}, {}&apos;</span>.format(score, label_name)
+        coords = (xmin, ymin), xmax - xmin + <span class="hljs-number">1</span>, ymax - ymin + <span class="hljs-number">1</span>
+        color = colors[label]
+        <span class="hljs-comment"># &#x663E;&#x793A;&#x65B9;&#x6846;</span>
+        currentAxis.add_patch(plt.Rectangle(*coords, fill=<span class="hljs-keyword">False</span>, edgecolor=color, linewidth=<span class="hljs-number">2</span>))
+        <span class="hljs-comment"># &#x5DE6;&#x4E0A;&#x89D2;&#x663E;&#x793A;&#x6982;&#x7387;&#x4EE5;&#x53CA;&#x540D;&#x79F0;</span>
+        currentAxis.text(xmin, ymin, display_txt, bbox={<span class="hljs-string">&apos;facecolor&apos;</span>: color, <span class="hljs-string">&apos;alpha&apos;</span>: <span class="hljs-number">0.5</span>})
+
+        <span class="hljs-comment"># plt.show()</span>
+    image_io = BytesIO()
+    plt.savefig(image_io, format=<span class="hljs-string">&apos;png&apos;</span>)
+    image_io.seek(<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">return</span> image_io
+</code></pre>
+<p>&#x5B8C;&#x6574;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+<span class="hljs-keyword">import</span> grpc
+<span class="hljs-keyword">from</span> tensorflow_serving.apis <span class="hljs-keyword">import</span> prediction_service_pb2_grpc
+<span class="hljs-keyword">from</span> tensorflow_serving.apis <span class="hljs-keyword">import</span> predict_pb2
+<span class="hljs-keyword">from</span> tensorflow.python.saved_model <span class="hljs-keyword">import</span> signature_constants
+
+<span class="hljs-keyword">from</span> keras.preprocessing.image <span class="hljs-keyword">import</span> img_to_array
+<span class="hljs-keyword">from</span> keras.applications.imagenet_utils <span class="hljs-keyword">import</span> preprocess_input
+<span class="hljs-keyword">from</span> utils.ssd_utils <span class="hljs-keyword">import</span> BBoxUtility
+<span class="hljs-keyword">from</span> utils.tag_img <span class="hljs-keyword">import</span> tag_picture
+<span class="hljs-keyword">import</span> io
+<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">make_prediction</span><span class="hljs-params">(image)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    &quot;&quot;&quot;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resize_img</span><span class="hljs-params">(image, target_size)</span>:</span>
+        img = io.BytesIO()
+        img.write(image)
+        img = Image.open(img).convert(<span class="hljs-string">&quot;RGB&quot;</span>)
+        <span class="hljs-keyword">if</span> target_size:
+            img = img.resize((target_size[<span class="hljs-number">1</span>], target_size[<span class="hljs-number">0</span>]))
+        <span class="hljs-keyword">return</span> img
+
+    image = resize_img(image, (<span class="hljs-number">300</span>, <span class="hljs-number">300</span>))
+    image_array = img_to_array(image)
+
+    feature = []
+    feature.append(image_array)
+    img_tensor = preprocess_input(np.array(feature))
+    print(img_tensor.shape)
+
+    <span class="hljs-comment"># &#x6253;&#x5F00;&#x5230;tensorflow server&#x7684;&#x901A;&#x9053;</span>
+    <span class="hljs-keyword">with</span> grpc.insecure_channel(<span class="hljs-string">&apos;127.0.0.1:8500&apos;</span>) <span class="hljs-keyword">as</span> channel:
+        stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
+
+        <span class="hljs-comment"># &#x521B;&#x5EFA;&#x9884;&#x6D4B;&#x8BF7;&#x6C42;</span>
+        request = predict_pb2.PredictRequest()
+        request.model_spec.name = <span class="hljs-string">&apos;commodity&apos;</span>
+        request.model_spec.signature_name = signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY
+        request.inputs[<span class="hljs-string">&apos;images&apos;</span>].CopyFrom(tf.contrib.util.make_tensor_proto(img_tensor, shape=[<span class="hljs-number">1</span>, <span class="hljs-number">300</span>, <span class="hljs-number">300</span>, <span class="hljs-number">3</span>]))
+
+        <span class="hljs-comment"># &#x8FDB;&#x884C;&#x9884;&#x6D4B;</span>
+        result = stub.Predict(request)
+
+        <span class="hljs-keyword">with</span> tf.Session() <span class="hljs-keyword">as</span> sess:
+            _res = sess.run(tf.convert_to_tensor(result.outputs[<span class="hljs-string">&apos;concat_3:0&apos;</span>]))
+        <span class="hljs-comment"># 3&#x3001;&#x6D4B;&#x8BD5;&#x9636;&#x6BB5; &#x8FDB;&#x884C;NMS &#x8FC7;&#x6EE4;</span>
+        butil = BBoxUtility(<span class="hljs-number">9</span>)
+
+        outputs = butil.detection_out(_res)
+
+    <span class="hljs-keyword">return</span> tag_picture(image_array, outputs)
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../day07/section4.html" class="navigation navigation-prev " aria-label="Previous page: TensorFlow Serving开启模型服务"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../day07/section6.html" class="navigation navigation-next " aria-label="Next page: Web Server开启"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"katex":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
